@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/sprint2/static/css/main.f723f2ce.css",
+    "main.js": "/sprint2/static/js/main.527144e4.js",
+    "static/media/ala_avion.jpg": "/sprint2/static/media/ala_avion.6a2018048811fd675dbe.jpg",
+    "static/media/farmacias.svg": "/sprint2/static/media/farmacias.0dc7d907d2af70ad51dd72fcc290d62b.svg",
+    "static/media/paypal.svg": "/sprint2/static/media/paypal.da5a8ec472f937245e1c2a3d25d4af00.svg",
+    "static/media/walmart.svg": "/sprint2/static/media/walmart.3955695954410ef818cf817705b5f5be.svg",
+    "static/media/Visa.svg": "/sprint2/static/media/Visa.a3bed91609d5612973358b45064062f2.svg",
+    "static/media/Mastercard.svg": "/sprint2/static/media/Mastercard.c40902531eecab3fdf569e1c45bfc2f5.svg",
+    "static/media/Amex.svg": "/sprint2/static/media/Amex.94e9b8cd41a109b35206446470bca05b.svg",
+    "static/media/oxxo.svg": "/sprint2/static/media/oxxo.4dfe16f95d2a6a75fd1224e66014403f.svg",
+    "static/media/7-eleven.svg": "/sprint2/static/media/7-eleven.bdfde21882e15a6ce3b7df4a7e7d67e1.svg",
+    "static/media/plane.svg": "/sprint2/static/media/plane.2ee9f0d59defc992ddc06e97166dc446.svg",
+    "index.html": "/sprint2/index.html",
+    "main.f723f2ce.css.map": "/sprint2/static/css/main.f723f2ce.css.map",
+    "main.527144e4.js.map": "/sprint2/static/js/main.527144e4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f723f2ce.css",
+    "static/js/main.527144e4.js"
+  ]
+}
