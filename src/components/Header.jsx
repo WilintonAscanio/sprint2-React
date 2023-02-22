@@ -1,9 +1,28 @@
-import React from 'react'
-import plane from '../assets/icons/plane.svg'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { getCountries } from '../services/countries';
 
 const Header = () => {
+    const [data, setData] = useState([])
+
+    const getData = async () => {
+        const datos = await getCountries();
+        setData(datos)
+    }
+    useEffect(() => {
+        getData()
+    }, [])
+
+
+
+
     return (
         <>
+            <header className='myFlights'>
+
+                <Link className='myFlights__mine' to='myFlights'>Mis vuelos</Link>
+
+            </header>
             <article className='header'>
                 <section className='header__left'>
                     <p className='header__left__title'>Busca un nuevo destino y comienza la aventura.</p>
@@ -16,13 +35,21 @@ const Header = () => {
                         <section>
                             <select>
                                 <option value="">Ciudad origen</option>
-                                <option value="1">Colombia</option>
+                                {data.map((pais) => (
+                                    <option value={pais.id} key={pais.id}>{pais.name}<span>{pais.ISO3}</span></option>
+
+                                ))}
                             </select>
                             <small>Origen</small>
                         </section>
                         <section>
                             <select>
                                 <option>---</option>
+                                {data.map((pais) => (
+                                    <option value={pais.id} key={pais.id}>{pais.name} <span>{pais.ISO3}</span></option>
+
+                                ))}
+
                             </select>
                             <small>Seleccione su destino</small>
                         </section>
@@ -49,7 +76,9 @@ const Header = () => {
                             <input type="text" placeholder='-- -- -- --' />
                         </section>
                     </div>
-                    <button className='header__left__button'><img src={plane} alt="avion" />Buscar vuelos</button>
+                    <Link to="selectFlight/flight" className='header__left__button'><span className="material-symbols-outlined">
+                        airplanemode_active
+                    </span>Buscar vuelos</Link>
 
 
                 </section>
