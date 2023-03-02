@@ -1,9 +1,41 @@
+import { DateTime } from 'luxon';
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom'
 import { getCountries } from '../services/countries';
+import Destiny from './Destiny';
+import FirstFlight from './FirstFlight';
+import Origin from './Origin';
+import Passengers from './Passengers';
 
 const Header = () => {
+
+    const { register, handleSubmit, watch } = useForm();
+
+    const navigation = useNavigate()
+
+    const [showModal, setShowModal] = useState(false);
+
+    const [modalDestiny, setmModalDestiny] = useState(false)
+    const [modalPassengers, setmModalPassengers] = useState(false)
+    const [modalDates, setModalDates] = useState(false)
+
+    const origin = watch('origin')
+    const destiny = watch('destiny')
+    const fecha = watch('salida')
+    // console.log(fecha);
+    // // const time = DateTime.now()
+    // const t = DateTime.fromJSDate(fecha);
+    // console.log(t.toLocaleString(DateTime.DATE_HUGE));
+    // // console.log(t.toLocaleString(DateTime.DATE_HUGE));
+
+    // // console.log(time.toLocaleString(DateTime.DATE_HUGE));
+
     const [data, setData] = useState([])
+
+    const [boton, setBoton] = useState("boton1")
+    const [boton2, setBoton2] = useState("boton2")
+    const [type, setType] = useState('')
 
     const getData = async () => {
         const datos = await getCountries();
@@ -13,6 +45,26 @@ const Header = () => {
         getData()
     }, [])
 
+    const changeClassBotton = (boton) => {
+        if (boton === "boton1") {
+            setBoton("colorButton");
+            setBoton2("colorPrimary");
+            setType('Sencillo')
+
+        } else {
+            setBoton("colorPrimary");
+            setBoton2("colorButton");
+            setType('Redondo')
+        }
+    };
+    const dataFlight = JSON.parse(localStorage.getItem('data')) || []
+
+
+    const onSubmit = (data) => {
+
+        localStorage.setItem('data', JSON.stringify(data))
+        navigation('selectFlight/flight')
+    }
 
 
 
@@ -24,66 +76,78 @@ const Header = () => {
 
             </header>
             <article className='header'>
-                <section className='header__left'>
+                <form className='header__left' onSubmit={handleSubmit(onSubmit)}>
                     <p className='header__left__title'>Busca un nuevo destino y comienza la aventura.</p>
                     <p className='header__left__description'>Descubre vuelos al mejor precio y perfectos para cualquier viaje.</p>
                     <div className='header__left__buttons'>
-                        <button>Viaje redondo</button>
-                        <button>Viaje sencillo</button>
+                        <small className={boton} onClick={() => changeClassBotton("boton1")}>Viaje redondo</small>
+                        <small className={boton2} onClick={() => changeClassBotton("boton2")}>Viaje sencillo</small>
                     </div>
                     <div className='header__left__fly'>
-                        <section>
-                            <select>
+                        <section onClick={() => {
+                            setShowModal(true)}}>
+                            <select  {...register('origin')}>
                                 <option value="">Ciudad origen</option>
-                                {data.map((pais) => (
-                                    <option value={pais.id} key={pais.id}>{pais.name}<span>{pais.ISO3}</span></option>
 
-                                ))}
                             </select>
+
+                            {showModal && <Origin countries={data} setShowModal={setShowModal} />
+
+                            }
                             <small>Origen</small>
                         </section>
-                        <section>
-                            <select>
+                        <section onClick={() => setmModalDestiny(true)}>
+                            <select {...register('destiny')}>
                                 <option>---</option>
-                                {data.map((pais) => (
-                                    <option value={pais.id} key={pais.id}>{pais.name} <span>{pais.ISO3}</span></option>
-
-                                ))}
-
                             </select>
+                            {modalDestiny && <Destiny countries={data} setShowModal={setShowModal} />
+
+                            }
                             <small>Seleccione su destino</small>
                         </section>
                     </div>
                     <div className='header__left__dates'>
-                        <section>
+                        <section onClick={() => setModalDates(true)}>
                             <small>Salida</small>
-                            <input type="date" />
+                            <input type="date" {...register('salida')} />
                         </section>
-                        <section>
+                        <section onClick={() => setModalDates(true)}>
                             <small>Regreso</small>
-                            <input type="date" />
+                            <input type="date" {...register('regreso')} />
                         </section>
+                        {modalDates && (
+                            <FirstFlight />
+                        )}
                     </div>
                     <div className='header__left__passengers'>
-                        <section>
+                        <section onClick={() => setmModalPassengers(true)}>
                             <small>Pasajeros</small>
                             <select>
                                 <option value="">Seleccione</option>
                             </select>
+                            {modalPassengers && (
+                                <Passengers />
+                            )}
                         </section>
                         <section>
                             <small>¿Tiene un código de promoción?</small>
-                            <input type="text" placeholder='-- -- -- --' />
+                            <input type="text" placeholder='-- -- -- --'
+                                {...register('promocional')} />
                         </section>
                     </div>
-                    <Link to="selectFlight/flight" className='header__left__button'><span className="material-symbols-outlined">
+                    <button type='submit'>
+                        <Link to="selectFlight/flight" className='header__left__button'><span className="material-symbols-outlined">
                         airplanemode_active
                     </span>Buscar vuelos</Link>
+                    </button>
 
 
-                </section>
+
+                </form>
                 <section className='header__right'></section>
             </article>
+            
+
 
         </>
 

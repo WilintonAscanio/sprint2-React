@@ -1,14 +1,18 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const HeaderFlight = () => {
+
+    const data = JSON.parse(localStorage.getItem('data'))||[]
+
     return (
         <>
             <section className='flight__left__top'>
                 <h2>Vuelo de salida</h2>
-                <button>Cambiar vuelo</button>
+                <Link to='/' className='flight__left__top__link'>Cambiar vuelo</Link>
             </section>
-            <strong>Martes 30 nov 2021</strong>
-            <small>Cd. Mex (AIICM) a Culiacán</small>
+            <strong>{data.salida}</strong>
+            <small>{data.origin} (AIICM) a {data.destiny}</small>
         </>
     )
 }

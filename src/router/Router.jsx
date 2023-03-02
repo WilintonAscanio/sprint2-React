@@ -17,7 +17,7 @@ const Router = () => {
           <Route path="asientos" element={<Asientos />} />
 
         </Route>
-        <Route path="paypal" element={<PayPal />}/>
+        <Route path="/paypal" element={<PayPal />}/>
         <Route path="myFlights" element={<MyFlights />}/>
 
 

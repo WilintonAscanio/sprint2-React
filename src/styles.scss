@@ -11,6 +11,7 @@ $color-primary: #f5f5f5;
 $color-button: #9d2578;
 $color-small: #a9a9a9;
 
+
 .myFlights {
     background-color: #6d0d50;
     height: 40px;
@@ -46,21 +47,22 @@ $color-small: #a9a9a9;
     margin: 5%;
     height: 90vh;
 
+
     &__left {
         display: flex;
         flex-direction: column;
         background-color: $color-primary;
         width: 600px;
         border-radius: 10px;
-        padding: 20px;
-        gap: 15px;
+        padding: 1% 1% 0.5% 1%;
+        gap: 5px;
         margin-right: -10%;
         z-index: 1;
         height: 80%;
         margin-top: 5%;
 
         &__title {
-            font-size: 35px;
+            font-size: 30px;
             font-weight: bold;
         }
 
@@ -71,7 +73,7 @@ $color-small: #a9a9a9;
 
         &__buttons {
             display: flex;
-            width: 43%;
+            width: 50%;
             background-color: $color-primary;
             border-radius: 5px;
             height: 30px;
@@ -80,15 +82,25 @@ $color-small: #a9a9a9;
             padding: 3px;
             background-color: white;
 
-            & button {
-                width: 95px;
-                color: black;
+            & small {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 120px;
                 border: none;
-                height: 100%;
+                height: 30px;
                 outline: none;
-                background-color: white;
                 border-radius: 5px;
+                font-size: 80%;
                 cursor: pointer;
+
+
+
+                // &:focus {
+                //     background-color: $color-button;
+                //     color: white;
+
+                // }
 
                 &:hover {
 
@@ -105,7 +117,7 @@ $color-small: #a9a9a9;
             display: flex;
             width: 100%;
             justify-content: space-between;
-            height: 100px;
+            height: 80px;
             gap: 20px;
 
             & section {
@@ -157,11 +169,12 @@ $color-small: #a9a9a9;
 
                 & small {
                     color: $color-small;
+                    font-size: 90%;
                 }
 
                 & input {
                     border: none;
-                    font-size: 15px;
+                    font-size: 80%;
                     outline: none;
                     font-weight: bold;
                 }
@@ -180,13 +193,13 @@ $color-small: #a9a9a9;
                 display: flex;
                 flex-direction: column;
                 width: 50%;
-                padding: 1%;
-                gap: 5px;
+                padding-left: 5px;
                 border: 1px solid $color-small;
                 border-radius: 5px;
 
                 & small {
                     color: $color-small;
+                    font-size: 13px;
                 }
 
                 & input,
@@ -198,23 +211,35 @@ $color-small: #a9a9a9;
             }
         }
 
-        &__button {
-            text-decoration: none;
-            height: 50px;
+        & button {
+            margin-top: 5px;
+            height: 10%;
             width: 100%;
             background-color: $color-button;
             color: white;
             border: none;
             border-radius: 20px;
             cursor: pointer;
+            outline: none;
+
+            &:hover {
+                background-color: #6d0d50;
+            }
+
+
+
+        }
+
+        &__button {
+            text-decoration: none;
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 5px;
 
-            &:hover {
-                background-color: #6d0d50;
-            }
+
+
 
         }
     }
@@ -231,6 +256,19 @@ $color-small: #a9a9a9;
     }
 
 
+}
+
+.colorPrimary {
+    background-color: white;
+}
+
+.colorSmall {
+    background-color: #a9a9a9;
+}
+
+.colorButton {
+    background-color: $color-button;
+    color: white;
 }
 
 .payMethods {
@@ -302,7 +340,7 @@ $color-small: #a9a9a9;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0px 1px 5px 1px $color-small;
-            height: 250px;
+            height: 100%;
             display: flex;
             flex-direction: column;
             text-align: center;
@@ -373,6 +411,29 @@ $color-small: #a9a9a9;
         &__top {
             display: flex;
             justify-content: space-between;
+
+            &__link {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                height: 40px;
+                border-radius: 50px;
+                width: 150px;
+                border: 3px solid #9d2578;
+                color: #9d2578;
+                background-color: white;
+                font-size: 14px;
+
+                &:hover {
+                    background-color: #9d2578;
+                    color: white;
+                    cursor: pointer;
+                    transition: background-color .5s;
+                }
+
+            }
+
         }
 
         & h2 {
@@ -398,7 +459,7 @@ $color-small: #a9a9a9;
             justify-content: space-around;
             gap: 10px;
             background-color: white;
-            height: 100px;
+            height: 120px;
             border-radius: 8px;
             box-shadow: 0px 1px 5px 1px $color-small;
 
@@ -650,7 +711,7 @@ $color-small: #a9a9a9;
     }
 }
 
-.calendar {
+.calendar2 {
     width: 100%;
     height: 100vh;
     padding: 5%;
@@ -659,4 +720,341 @@ $color-small: #a9a9a9;
 
 
 
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+
+
+    &__container,
+    &__destiny {
+        position: fixed;
+        top: 63%;
+        background-color: white;
+        padding: 10px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+
+
+
+
+
+        & section {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border: none;
+        }
+
+        & article {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            border: 1px solid gray;
+            border-radius: 8px;
+            gap: 10px;
+            height: 40px;
+
+            & input {
+                width: 90%;
+                padding-left: 10px;
+                border: none;
+                outline: none;
+            }
+        }
+
+        & select {
+            display: flex;
+            width: 100%;
+
+        }
+    }
+
+    & p {
+        background-color: rgb(51, 153, 85);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40%;
+        height: 40px;
+        align-self: center;
+        border-radius: 6px;
+        font-size: 18px;
+        margin-top: 10px;
+        color: white;
+        cursor: pointer;
+    }
+
+    &__container {
+        left: 20%;
+
+    }
+
+    &__destiny {
+        left: 39%;
+    }
+
+
+
+}
+
+.dates {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+
+    &__container {
+        position: fixed;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        margin: 20%;
+        background-color: white;
+
+        border-radius: 8px;
+        padding: 20px;
+
+        &__footer {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            & button {
+                width: 120px;
+                border: none;
+                height: 60px;
+                outline: none;
+                border-radius: 25px;
+                font-size: 20px;
+                cursor: pointer;
+                background-color: rgb(235, 224, 224);
+
+
+
+
+
+                &:hover {
+
+                    background-color: $color-button;
+                    color: white;
+                    transition: background-color .5s;
+
+                }
+
+            }
+        }
+
+    }
+
+
+
+
+}
+
+.modalDates {
+    display: flex;
+    justify-content: space-between;
+    height: 70%;
+    width: 100%;
+
+    & section {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        & input {
+            outline: none;
+            padding-left: 10px;
+            border-radius: 8px;
+            border: 1px solid gray;
+        }
+    }
+}
+
+.calendar {
+    width: 100%;
+
+}
+
+@media (max-width:1000px) {
+    .header {
+        width: 100%;
+        margin: 0;
+        flex-direction: column;
+        height: 100vh;
+
+        &__left {
+            width: 80%;
+            margin-left: 10%;
+            gap: 10px;
+
+            &__buttons small {
+                font-size: 60%;
+
+            }
+
+            &__title {
+                font-size: 25px;
+            }
+
+            &__description {
+                font-size: 12px;
+            }
+
+            &__fly {
+                gap: 5px;
+
+                & section {
+                    & select {
+                        font-size: 90%;
+                    }
+
+                    & small {
+                        font-size: 80%;
+                    }
+
+                }
+
+            }
+
+            &__dates {
+                gap: 5px;
+            }
+
+            &__passengers {
+                gap: 5px;
+
+                & section {
+                    height: 40px;
+
+                    & small {
+                        font-size: 8px;
+                    }
+                }
+            }
+        }
+
+        &__right {
+            margin-left: 10%;
+            width: 80%;
+            height: 100%;
+
+
+        }
+    }
+
+    .payMethods {
+        width: 80%;
+        margin-left: 10%;
+        height: 100%;
+
+        & h2 {
+            font-size: 20px;
+        }
+
+        & section {
+            flex-direction: column;
+            height: 100%;
+
+            & div figure {
+                gap: 5px;
+            }
+
+        }
+    }
+
+    .services {
+        width: 80%;
+        margin-left: 10%;
+
+        & h2 {
+            font-size: 20px;
+        }
+
+
+        & section {
+            grid-template-columns: auto auto;
+        }
+    }
+
+    .flight {
+        flex-direction: column;
+        padding: 0;
+        padding: 10px;
+
+        &__left {
+            width: 100%;
+
+            & h2 {
+                font-size: 20px;
+            }
+
+            & strong {
+                font-size: 15px;
+            }
+
+            &__details {
+                height: 100%;
+                gap: 5px;
+            }
+
+            & p {
+                font-size: 15px;
+            }
+
+            & div {
+                font-size: 12px;
+            }
+        }
+
+        &__right {
+            width: 100%;
+        }
+    }
+
+    .seats {
+        width: 100%;
+    }
+
+    .paypal {
+        padding: 2% 5%;
+    }
+}
+
+@media (max-width:600px) {
+
+    .header {
+        &__left {
+            &__title {
+                font-size: 18px;
+            }
+        }
+    }
+
+    .services section {
+        grid-template-columns: auto;
+
+    }
 }

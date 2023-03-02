@@ -22,7 +22,7 @@ const AsideSeats = () => {
 
 
                 </div>
-                <Link className='flight__right__button' to='paypal'><img src={paypal} alt="Paypal" />Pagar con PayPal</Link>
+                <Link className='flight__right__button' to='/paypal'><img src={paypal} alt="Paypal" />Pagar con PayPal</Link>
             </article>
 
         </>
