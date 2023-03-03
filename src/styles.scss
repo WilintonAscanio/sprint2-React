@@ -734,6 +734,7 @@ $color-small: #a9a9a9;
         padding: 10px;
         width: 300px;
         display: flex;
+        gap: 10px;
         flex-direction: column;
         border-radius: 8px;
 
@@ -945,6 +946,37 @@ $color-small: #a9a9a9;
     color: white;
     border-radius: 8px;
 
+}
+.seat {
+        display: flex;
+        gap: 20px;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+
+}
+.seatFlight {
+    width: 100px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 8px;
+
+}
+.blue{
+    background-color: $color-button;
+    color: white;
+
+}
+.gray {
+    background-color: white;
+    color: $color-button;
+}
+.select {
+    background-color: #9d2578;
+    color: white;
 }
 
 .hidden {

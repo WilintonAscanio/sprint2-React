@@ -4,15 +4,11 @@ import { HeaderContext } from './Header'
 const Passengers = () => {
     const {showPassengers, passengers, changeFormData } = useContext(HeaderContext)
 
-    // const [option, setOption] = useState('')
-
-    // const handleClick = ({ target }) => {
-    //     setOption(target.value)
-
-    // }
+   
     const confirm = () => {
-        console.log(total);
+        
         changeFormData({ name: 'passengers', value: total })
+        localStorage.setItem('passengers', JSON.stringify(total))
 
         showPassengers()
 
