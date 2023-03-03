@@ -1,9 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getFlights } from '../../services/flights'
 import AsideSeats from './AsideSeats'
 
 const Aside = () => {
-  const data = JSON.parse(localStorage.getItem('data')) || []
+  const data = JSON.parse(localStorage.getItem('datos')) || []
+
+  const [showFacture, setShowFacture] = useState(false)
+
+  const [details, setDetails] = useState([])
+  const [base, setBase] = useState(75000)
+  
+
+  const getData = async () => {
+    const datos = await getFlights()
+    setDetails(datos)
+
+  }
+  useEffect(() => {
+
+    getData()
+
+  }, [])
+
+  const flights = details.filter(item => item.placeIn === data.origin && item.placeOut === data.destiny)
+
+ 
+
+  const handleClick = () => {
+    setShowFacture(true)
+  }
+  const discount = base - (10/100)
+  const iva = (base *19)/100
+  const total = discount+iva
 
   return (
     <aside className='flight__right'>
@@ -11,12 +40,16 @@ const Aside = () => {
         <strong>Tu reservación</strong>
         <section>
           <small>Pasajeros</small>
-          <small>1 adulto</small>
+          <small>{data.passengers}</small>
         </section>
 
         <p>Vuelo de salida</p>
         <h3>{data.origin} __ <span>{data.destiny}</span></h3>
-        <p>05:45 PM <span>06:47 PM</span></p>
+        {flights.map((element, index) => (
+        <p key={index}>{element.hourBegin}<span>{element.hourEnd}</span></p>
+
+
+        ))}
 
 
         <h4>{data.salida}</h4>
@@ -25,16 +58,20 @@ const Aside = () => {
       </div>
       <div>
         <strong>Costo de vuelo</strong>
-        <small>Tarifa base <span>$1,505 MXN</span></small>
-        <small>Tarifa base con descuento <span>$1,505 MXN</span></small>
-        <small>IVA tarifa <span>$1,505 MXN</span></small>
-        <small>Tarifa base <span>$1,505 MXN</span></small>
-        <h4>Total <span>$548 MXN</span></h4>
+        <small>Tarifa base <span>${base}</span></small>
+        <small>Tarifa base con descuento <span>$ {discount}</span></small>
+        <small>IVA tarifa <span>$ {iva}</span></small>
+        <small>Tarifa base <span>$ {base}</span></small>
+        <h4>Total <span>$ {total}</span></h4>
 
       </div>
+      {showFacture && (
       <AsideSeats />
 
-      <Link to="asientos" className='flight__right__button'>Seleccionar asientos</Link>
+
+      )}
+
+      <Link to="asientos" className={`flight__right__button ${showFacture ? 'hidden': ''}`} onClick={handleClick}>Seleccionar asientos</Link>
 
 
     </aside>
