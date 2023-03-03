@@ -2,7 +2,7 @@ import { DateTime } from 'luxon'
 import React from 'react'
 
 const FooterFlight = () => {
-  const data = JSON.parse(localStorage.getItem('data'))||[]
+  const data = JSON.parse(localStorage.getItem('datos'))||[]
 
 
 
@@ -12,7 +12,7 @@ const FooterFlight = () => {
     <button>Cambiar vuelo</button>
 
   </div>
-  <strong>{data.regreso}</strong>
+  <strong>{data.secondDate}</strong>
   <small>{data.destiny} a {data.origin} (AICM)</small>
     </>
     )

@@ -1,33 +1,58 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import close from "../assets/icons/x.svg"
 import search from "../assets/icons/search.svg"
+import { HeaderContext } from './Header'
+import { set } from 'date-fns'
 
-const Origin = ({ countries, setShowModal }) => {
-    const handleModal = () => {
-      setShowModal(false)
+const Origin = ({ countries }) => {
+
+    const { show, showModal, changeFormData } = useContext(HeaderContext)
+
+    const [option, setOption] = useState('')
+
+    const [searchInput, setSearchInput] = useState([])
+
+
+    const handleClick = ({ target }) => {
+        setOption(target.value)
+
     }
-    
+    const confirm = () => {
+        changeFormData({name:'origin', value : option})
+
+        show()
+
+    }
+    const filter = ({target}) => {
+        
+        const filter = countries.filter(countrie => countrie.place.toLowerCase().includes(target.value.toLowerCase()))
+        setSearchInput(filter)
+      
+    }
+
+
+
 
 
     return (
-        <article className='modal'>
+        <article className={`modal ${showModal === false ? 'hidden' : ''}`}>
             <div className='modal__container'>
                 <section className='modal__container__title'>
                     <strong>¿A dónde viajas?</strong>
-                    <img src={close} alt="cerrar"/>
+                    <img src={close} alt="cerrar" onClick={show} />
                 </section>
                 <article className='modal__container__search'>
                     <img src={search} alt="buscar" />
-                    <input type="text" placeholder='Ingrese el país de origen' />
+                    <input type="text" placeholder='Ingrese el país de origen' onChange={(e) => {filter(e)}} />
                 </article>
-                <select>
-                    {countries.map((countrie, index) => (
-                        <option value={countrie.id} key={index}>{`${countrie.name}--(${countrie.ISO3})`} </option>
+                <select onClick={(e) => { handleClick(e) }}>
+                    {searchInput.map((countrie, index) => (
+                        <option value={countrie.name} key={index}>{`${countrie.place}`} </option>
 
 
                     ))}
                 </select>
-                <button>Confirmar</button>
+                <button onClick={confirm}>Confirmar</button>
 
             </div>
 

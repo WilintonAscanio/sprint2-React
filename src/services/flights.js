@@ -2,9 +2,9 @@ import axios from "axios";
 import endpoints from "./endpoints";
 
 
-export const getCountries = async () => {
+export const getFlights = async () => {
   try {
-    const { data } = await axios.get(endpoints.countries);
+    const { data } = await axios.get(endpoints.vuelos);
     return data;
     
   } catch (error) {
@@ -13,5 +13,3 @@ export const getCountries = async () => {
     
   }
 }
-
-

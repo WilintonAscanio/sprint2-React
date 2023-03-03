@@ -8,17 +8,17 @@ const AsideSeats = () => {
             <article>
                 <div>
                     <strong>Servicios opcionales</strong>
-                    <small>Selecciona tu asiento <span>$284 MXN</span></small>
-                    <small>IVA servicios <span>$284 MXN</span></small>
-                    <h4>Total <span>$329 MXN</span></h4>
+                    <small>Selecciona tu asiento <span>$20000</span></small>
+                    <small>IVA servicios <span>$ 3800</span></small>
+                    <h4>Total <span>$23800</span></h4>
                 </div>
                 <div>
                     <strong>TUA</strong>
-                    <small>Tarifa de uso de aeropuerto (TUA) <span>$1189 MXN</span></small>
-                    <h4>Total <span>$1189 MXN</span></h4>
+                    <small>Tarifa de uso de aeropuerto (TUA) <span>$ 75000</span></small>
+                    <h4>Total <span>$ 75000</span></h4>
                 </div>
                 <div>
-                    <h4>Total <span>$2941 MXN</span></h4>
+                    <h4>Total <span>$ 98800</span></h4>
 
 
                 </div>

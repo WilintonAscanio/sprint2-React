@@ -1,5 +1,4 @@
-import { DateTime } from 'luxon';
-import React, { useEffect, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom'
 import { getCountries } from '../services/countries';
@@ -7,6 +6,8 @@ import Destiny from './Destiny';
 import FirstFlight from './FirstFlight';
 import Origin from './Origin';
 import Passengers from './Passengers';
+
+export const HeaderContext = createContext({})
 
 const Header = () => {
 
@@ -16,35 +17,28 @@ const Header = () => {
 
     const [showModal, setShowModal] = useState(false);
 
-    const [modalDestiny, setmModalDestiny] = useState(false)
-    const [modalPassengers, setmModalPassengers] = useState(false)
+    const [modalDestiny, setModalDestiny] = useState(false)
+
     const [modalDates, setModalDates] = useState(false)
+
+    const [passengers, setPassengers] = useState(false)
+
+    const [boton, setBoton] = useState("boton1")
+
+    const [boton2, setBoton2] = useState("boton2")
+
+    const [type, setType] = useState('')
+
+    const [dataFlight, setDataFlight] = useState([])
+
+    const [validate, setValidate] = useState(false)
 
     const origin = watch('origin')
     const destiny = watch('destiny')
     const fecha = watch('salida')
-    // console.log(fecha);
-    // // const time = DateTime.now()
-    // const t = DateTime.fromJSDate(fecha);
-    // console.log(t.toLocaleString(DateTime.DATE_HUGE));
-    // // console.log(t.toLocaleString(DateTime.DATE_HUGE));
 
-    // // console.log(time.toLocaleString(DateTime.DATE_HUGE));
 
     const [data, setData] = useState([])
-
-    const [boton, setBoton] = useState("boton1")
-    const [boton2, setBoton2] = useState("boton2")
-    const [type, setType] = useState('')
-
-    const getData = async () => {
-        const datos = await getCountries();
-        setData(datos)
-    }
-    useEffect(() => {
-        getData()
-    }, [])
-
     const changeClassBotton = (boton) => {
         if (boton === "boton1") {
             setBoton("colorButton");
@@ -57,25 +51,122 @@ const Header = () => {
             setType('Redondo')
         }
     };
-    const dataFlight = JSON.parse(localStorage.getItem('data')) || []
 
+    const [formData, setFormData] = useState({
+        origin: '',
+        destiny: '',
+        firstDate: '',
+        secondDate: '',
+        passengers: '',
+        code: '',
+        type: type
+
+    })
+
+
+
+
+
+
+
+
+
+    const getData = async () => {
+        const datos = await getCountries();
+        setData(datos)
+    }
+    useEffect(() => {
+        getData()
+    }, [])
+
+
+
+
+
+
+    const show = () => {
+        setShowModal(!showModal)
+
+    }
+    const showDestiny = () => {
+        setModalDestiny(!modalDestiny)
+
+
+    }
+    const showDates = () => {
+        setModalDates(!modalDates)
+
+
+    }
+    const showPassengers = () => {
+        setPassengers(!passengers)
+
+
+    }
+    const changeFormData = (object) => {
+        setFormData({ ...formData, [object.name]: object.value })
+
+
+    }
+    const getDataFlight = () => {
+        const data = JSON.parse(localStorage.getItem('datos')) || []
+
+        setDataFlight(data)
+
+    }
+    const validation = () => {
+        if (formData.origin && formData.destiny && formData.firstDate && formData.secondDate && formData.passengers) {
+
+            setValidate(true)
+            
+        }
+       
+    }
+    useEffect(() => {
+        localStorage.setItem('datos', JSON.stringify(formData))
+        getDataFlight()
+        validation()
+
+
+    }, [formData])
 
     const onSubmit = (data) => {
 
         localStorage.setItem('data', JSON.stringify(data))
-        navigation('selectFlight/flight')
+        if (formData.origin) {
+            navigation('selectFlight/flight')
+
+
+        }
     }
+   
+
+
+
+
+
+
 
 
 
     return (
-        <>
+        <HeaderContext.Provider value={
+            { showModal, show, changeFormData, showDestiny, modalDestiny, modalDates, showDates, showPassengers, passengers, formData, data }}>
+            <Origin countries={data} />
+            <Destiny countries={data} />
+            <FirstFlight />
+            <Passengers />
+
+
+
+
             <header className='myFlights'>
 
                 <Link className='myFlights__mine' to='myFlights'>Mis vuelos</Link>
 
             </header>
             <article className='header'>
+
                 <form className='header__left' onSubmit={handleSubmit(onSubmit)}>
                     <p className='header__left__title'>Busca un nuevo destino y comienza la aventura.</p>
                     <p className='header__left__description'>Descubre vuelos al mejor precio y perfectos para cualquier viaje.</p>
@@ -85,49 +176,44 @@ const Header = () => {
                     </div>
                     <div className='header__left__fly'>
                         <section onClick={() => {
-                            setShowModal(true)}}>
-                            <select  {...register('origin')}>
-                                <option value="">Ciudad origen</option>
+                            setShowModal(true)
+                        }}>
+
+                            <select>
+                                <option value="">{dataFlight.origin ? dataFlight.origin : 'Ciudad Origen'}</option>
 
                             </select>
 
-                            {showModal && <Origin countries={data} setShowModal={setShowModal} />
 
-                            }
                             <small>Origen</small>
                         </section>
-                        <section onClick={() => setmModalDestiny(true)}>
-                            <select {...register('destiny')}>
-                                <option>---</option>
+                        <section onClick={() => { setModalDestiny(true) }}>
+                            <select>
+                                <option>{formData.destiny ? formData.destiny : '---'}</option>
                             </select>
-                            {modalDestiny && <Destiny countries={data} setShowModal={setShowModal} />
 
-                            }
+
                             <small>Seleccione su destino</small>
                         </section>
                     </div>
                     <div className='header__left__dates'>
                         <section onClick={() => setModalDates(true)}>
                             <small>Salida</small>
-                            <input type="date" {...register('salida')} />
+                            <input readOnly value={formData.firstDate} />
                         </section>
                         <section onClick={() => setModalDates(true)}>
                             <small>Regreso</small>
-                            <input type="date" {...register('regreso')} />
+                            <input readOnly value={formData.secondDate} />
                         </section>
-                        {modalDates && (
-                            <FirstFlight />
-                        )}
+
                     </div>
                     <div className='header__left__passengers'>
-                        <section onClick={() => setmModalPassengers(true)}>
+                        <section onClick={() => { setPassengers(true) }}>
                             <small>Pasajeros</small>
                             <select>
-                                <option value="">Seleccione</option>
+                                <option value="">{formData.passengers ? formData.passengers : 'Seleccione una cantidad'}</option>
                             </select>
-                            {modalPassengers && (
-                                <Passengers />
-                            )}
+
                         </section>
                         <section>
                             <small>¿Tiene un código de promoción?</small>
@@ -136,9 +222,9 @@ const Header = () => {
                         </section>
                     </div>
                     <button type='submit'>
-                        <Link to="selectFlight/flight" className='header__left__button'><span className="material-symbols-outlined">
-                        airplanemode_active
-                    </span>Buscar vuelos</Link>
+                        <Link to={`${validate ? 'selectFlight/flight' :''}`} className='header__left__button'><span className="material-symbols-outlined">
+                            airplanemode_active
+                        </span>Buscar vuelos</Link>
                     </button>
 
 
@@ -146,10 +232,10 @@ const Header = () => {
                 </form>
                 <section className='header__right'></section>
             </article>
-            
 
 
-        </>
+
+        </HeaderContext.Provider>
 
     )
 }
