@@ -11,11 +11,42 @@ $color-primary: #f5f5f5;
 $color-button: #9d2578;
 $color-small: #a9a9a9;
 
+
+.myFlights {
+    background-color: #6d0d50;
+    height: 40px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+    &__mine {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+
+        &:hover {
+            scale: 1.1;
+        }
+
+
+
+
+    }
+
+
+    & ul:hover {
+        cursor: pointer;
+        scale: 1.1;
+    }
+
+}
+
 .header {
     display: flex;
     width: 90%;
     margin: 5%;
     height: 90vh;
+
 
     &__left {
         display: flex;
@@ -23,15 +54,14 @@ $color-small: #a9a9a9;
         background-color: $color-primary;
         width: 600px;
         border-radius: 10px;
-        padding: 20px;
-        gap: 15px;
+        padding: 1% 1% 0.5% 1%;
+        gap: 5px;
         margin-right: -10%;
-        z-index: 1;
         height: 80%;
         margin-top: 5%;
 
         &__title {
-            font-size: 35px;
+            font-size: 30px;
             font-weight: bold;
         }
 
@@ -42,7 +72,7 @@ $color-small: #a9a9a9;
 
         &__buttons {
             display: flex;
-            width: 43%;
+            width: 50%;
             background-color: $color-primary;
             border-radius: 5px;
             height: 30px;
@@ -51,15 +81,25 @@ $color-small: #a9a9a9;
             padding: 3px;
             background-color: white;
 
-            & button {
-                width: 95px;
-                color: black;
+            & small {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 120px;
                 border: none;
-                height: 100%;
+                height: 30px;
                 outline: none;
-                background-color: white;
                 border-radius: 5px;
+                font-size: 80%;
                 cursor: pointer;
+
+
+
+                // &:focus {
+                //     background-color: $color-button;
+                //     color: white;
+
+                // }
 
                 &:hover {
 
@@ -76,7 +116,7 @@ $color-small: #a9a9a9;
             display: flex;
             width: 100%;
             justify-content: space-between;
-            height: 100px;
+            height: 80px;
             gap: 20px;
 
             & section {
@@ -128,11 +168,12 @@ $color-small: #a9a9a9;
 
                 & small {
                     color: $color-small;
+                    font-size: 90%;
                 }
 
                 & input {
                     border: none;
-                    font-size: 15px;
+                    font-size: 80%;
                     outline: none;
                     font-weight: bold;
                 }
@@ -151,13 +192,13 @@ $color-small: #a9a9a9;
                 display: flex;
                 flex-direction: column;
                 width: 50%;
-                padding: 1%;
-                gap: 5px;
+                padding-left: 5px;
                 border: 1px solid $color-small;
                 border-radius: 5px;
 
                 & small {
                     color: $color-small;
+                    font-size: 13px;
                 }
 
                 & input,
@@ -169,22 +210,35 @@ $color-small: #a9a9a9;
             }
         }
 
-        &__button {
-            height: 40px;
+        & button {
+            margin-top: 5px;
+            height: 10%;
             width: 100%;
             background-color: $color-button;
             color: white;
             border: none;
             border-radius: 20px;
             cursor: pointer;
+            outline: none;
+
+            &:hover {
+                background-color: #6d0d50;
+            }
+
+
+
+        }
+
+        &__button {
+            text-decoration: none;
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 5px;
 
-            &:hover {
-                background-color: #6d0d50;
-            }
+
+
 
         }
     }
@@ -196,9 +250,25 @@ $color-small: #a9a9a9;
         background-size: cover;
         background-position: center;
         border-radius: 12px;
+        z-index: -1;
+
+
     }
 
 
+}
+
+.colorPrimary {
+    background-color: white;
+}
+
+.colorSmall {
+    background-color: #a9a9a9;
+}
+
+.colorButton {
+    background-color: $color-button;
+    color: white;
 }
 
 .payMethods {
@@ -270,7 +340,7 @@ $color-small: #a9a9a9;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0px 1px 5px 1px $color-small;
-            height: 250px;
+            height: 100%;
             display: flex;
             flex-direction: column;
             text-align: center;
@@ -305,4 +375,770 @@ $color-small: #a9a9a9;
 
         }
     }
+}
+
+.flight {
+    display: flex;
+    width: 100%;
+    padding: 30px 60px;
+    gap: 20px;
+    background-color: #f5f5f7;
+
+
+    & button {
+        height: 40px;
+        border-radius: 50px;
+        width: 150px;
+        border: 3px solid #9d2578;
+        color: #9d2578;
+        background-color: white;
+        font-size: 14px;
+
+        &:hover {
+            background-color: #9d2578;
+            color: white;
+            cursor: pointer;
+            transition: background-color .5s;
+        }
+    }
+
+
+    &__left {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+
+        &__top {
+            display: flex;
+            justify-content: space-between;
+
+            &__link {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                height: 40px;
+                border-radius: 50px;
+                width: 150px;
+                border: 3px solid #9d2578;
+                color: #9d2578;
+                background-color: white;
+                font-size: 14px;
+
+                &:hover {
+                    background-color: #9d2578;
+                    color: white;
+                    cursor: pointer;
+                    transition: background-color .5s;
+                }
+
+            }
+
+        }
+
+        & h2 {
+            font-size: 25px;
+        }
+
+        & strong {
+            font-size: 19px;
+        }
+
+        & small {
+            color: $color-small;
+        }
+
+        & h3 {
+            margin-top: 15px;
+        }
+
+        &__details {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 10px;
+            background-color: white;
+            height: 120px;
+            border-radius: 8px;
+            box-shadow: 0px 1px 5px 1px $color-small;
+
+            &__scale {
+                width: 100px;
+                display: flex;
+                align-items: center;
+
+            }
+
+
+            & p {
+                font-size: 25px;
+            }
+
+            & div {
+                display: flex;
+                flex-direction: column;
+            }
+
+            &__price {
+                height: 80%;
+                width: 130px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: black;
+                border: 2px solid $color-small;
+                border-radius: 5px;
+                gap: 4px;
+
+                & small {
+                    color: black;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: #9d2578;
+                    color: white;
+                    transition: background-color .5s;
+
+
+                    & small {
+                        color: white;
+                    }
+                }
+
+            }
+        }
+
+    }
+
+    &__right {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border-radius: 10px;
+
+
+
+        & div {
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: white;
+            padding-bottom: 20px;
+
+            & strong {
+
+                background-color: $color-small;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                padding-left: 5px;
+                border-radius: 5px 5px 0px 0px;
+
+            }
+
+            & p {
+                padding-left: 5px;
+                color: $color-small;
+                display: flex;
+                width: 50%;
+                justify-content: space-between;
+            }
+
+            & h3 {
+                padding-left: 5px;
+                font-size: 35px;
+            }
+
+
+            & section {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            & h4 {
+                padding-left: 5px;
+                display: flex;
+                justify-content: space-between;
+
+            }
+
+            & small {
+                display: flex;
+                justify-content: space-between;
+                font-size: 15px;
+                padding: 5px;
+
+
+            }
+
+        }
+
+        &__button {
+            text-decoration: none;
+            height: 50px;
+            width: 100%;
+            background-color: $color-button;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+
+            &:hover {
+                background-color: #6d0d50;
+            }
+
+        }
+
+
+    }
+
+
+}
+
+.backFlight {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+
+    &__title {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+}
+
+.seats {
+    width: 50%;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+
+    & p {
+        text-align: center;
+        color: $color-small;
+    }
+
+    & section {
+        width: 100%;
+        display: flex;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        height: 60px;
+        gap: 10px;
+
+        & small,
+        strong {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 60px;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+
+
+
+        }
+
+
+    }
+
+    &__bottom small {
+        border: 3px solid #9d2578;
+
+        &:hover {
+            background-color: #9d2578;
+        }
+
+    }
+
+}
+
+.hidden {
+    display: none;
+}
+
+.paypal {
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 4%, rgba(232, 169, 205, 1) 9%, rgba(130, 88, 150, 1) 84%);
+    height: 100%;
+    width: 100%;
+    padding: 2% 20%;
+
+    & form {
+        width: 100%;
+        background-color: #f5f5f5;
+        border-radius: 15px;
+        box-shadow: 1px 2px 3px 2px $color-small;
+        padding: 10px;
+
+        & section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            & label {
+                font-size: 20px;
+
+            }
+
+            & input {
+                height: 40px;
+                border-radius: 8px;
+                border: 2px solid #9d2578;
+                padding-left: 10px;
+                font-size: 15px;
+                outline: none;
+            }
+        }
+
+    }
+
+    & button {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+}
+
+
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+
+
+    &__container,
+    &__destiny {
+        position: fixed;
+        top: 63%;
+        background-color: white;
+        padding: 10px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+
+
+
+
+
+        & section {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border: none;
+        }
+
+        & article {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            border: 1px solid gray;
+            border-radius: 8px;
+            gap: 10px;
+            height: 40px;
+
+            & input {
+                width: 90%;
+                padding-left: 10px;
+                border: none;
+                outline: none;
+            }
+        }
+
+        & select {
+            display: flex;
+            width: 100%;
+
+        }
+        & button {
+            background-color: $color-button;
+            margin-top: 20px;
+            border-radius: 5px;
+            height: 30px;
+            border: none;
+            color: white;
+
+            &:hover {
+                background-color: #6d0d50;
+            }
+            
+        }
+    }
+
+
+    &__container {
+        left: 20%;
+
+        
+
+    }
+
+    &__destiny {
+        left: 39%;
+    }
+
+
+
+}
+
+.dates {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    &__container {
+        position: fixed;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        margin: 20%;
+        background-color: white;
+
+        border-radius: 8px;
+        padding: 20px;
+
+        &__footer {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            & button {
+                width: 120px;
+                border: none;
+                height: 60px;
+                outline: none;
+                border-radius: 25px;
+                font-size: 20px;
+                cursor: pointer;
+                background-color: rgb(235, 224, 224);
+
+
+
+
+
+                &:hover {
+
+                    background-color: $color-button;
+                    color: white;
+                    transition: background-color .5s;
+
+                }
+
+            }
+        }
+
+    }
+
+
+
+
+}
+
+.modalDates {
+    display: flex;
+    justify-content: space-between;
+    height: 70%;
+    width: 100%;
+
+    & section {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        & input {
+            outline: none;
+            padding-left: 10px;
+            border-radius: 8px;
+            border: 1px solid gray;
+        }
+    }
+}
+
+.calendar {
+    width: 100%;
+
+}
+
+.modal__info {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 50%;
+    width: 300px;
+    border-radius: 8px;
+    padding: 20px;
+    gap: 20px;
+
+    & div {
+        display: flex;
+        justify-content: space-between;
+
+        & section {
+            width: 120px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+
+
+            & strong {
+                display: flex;
+                flex-direction: column;
+
+                & span {
+                    font-size: 12px;
+                    color: #a9a9a9;
+                }
+            }
+
+            & small {
+                display: flex;
+                justify-content: center;
+                font-size: 18px;
+                cursor: pointer;
+                width: 60px;
+                border: 1px solid gray;
+                border-radius: 5px;
+            }
+            & span {
+                font-size: 18px;
+                
+            }
+        }
+       
+    }
+}
+.passengers__button{
+    border: none;
+    height: 40px;
+    background-color: #6d0d50;
+    color: white;
+    border-radius: 8px;
+
+}
+
+.hidden {
+    display: none !important;
+}
+.error {
+    color: red;
+}
+
+@media (max-width:1000px) {
+    .header {
+        width: 100%;
+        margin: 0;
+        flex-direction: column;
+        height: 100vh;
+
+        &__left {
+            width: 80%;
+            margin-left: 10%;
+            gap: 10px;
+
+            &__buttons small {
+                font-size: 60%;
+
+            }
+
+            &__title {
+                font-size: 25px;
+            }
+
+            &__description {
+                font-size: 12px;
+            }
+
+            &__fly {
+                gap: 5px;
+
+                & section {
+                    & select {
+                        font-size: 90%;
+                    }
+
+                    & small {
+                        font-size: 80%;
+                    }
+
+                }
+
+            }
+
+            &__dates {
+                gap: 5px;
+            }
+
+            &__passengers {
+                gap: 5px;
+
+                & section {
+                    height: 40px;
+
+                    & small {
+                        font-size: 8px;
+                    }
+                }
+            }
+        }
+
+        &__right {
+            margin-left: 10%;
+            width: 80%;
+            height: 100%;
+
+
+        }
+    }
+
+    .payMethods {
+        width: 80%;
+        margin-left: 10%;
+        height: 100%;
+
+        & h2 {
+            font-size: 20px;
+        }
+
+        & section {
+            flex-direction: column;
+            height: 100%;
+
+            & div figure {
+                gap: 5px;
+            }
+
+        }
+    }
+
+    .services {
+        width: 80%;
+        margin-left: 10%;
+
+        & h2 {
+            font-size: 20px;
+        }
+
+
+        & section {
+            grid-template-columns: auto auto;
+        }
+    }
+
+    .flight {
+        flex-direction: column;
+        padding: 0;
+        padding: 10px;
+
+        &__left {
+            width: 100%;
+
+            & h2 {
+                font-size: 20px;
+            }
+
+            & strong {
+                font-size: 15px;
+            }
+
+            &__details {
+                height: 100%;
+                gap: 5px;
+            }
+
+            & p {
+                font-size: 15px;
+            }
+
+            & div {
+                font-size: 12px;
+            }
+        }
+
+        &__right {
+            width: 100%;
+        }
+    }
+
+    .seats {
+        width: 100%;
+    }
+
+    .paypal {
+        padding: 2% 5%;
+    }
+    .modalDates{
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+        gap: 60px;
+        overflow-y: scroll;
+        
+
+       
+    }
+    .dates{
+        &__container {
+            height: 100%;
+            margin: 0;
+            width: 80%;
+            
+        }
+    }
+    .calendar{
+        height: 200px;
+    }
+}
+
+@media (max-width:600px) {
+
+    .header {
+        &__left {
+            &__title {
+                font-size: 18px;
+            }
+        }
+    }
+
+    .services section {
+        grid-template-columns: auto;
+
+    }
+    .modal{
+
+        &__destiny, &__container {
+            left: 10%;
+        
+    }
+}
 }
