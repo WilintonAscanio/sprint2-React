@@ -3,9 +3,17 @@ import { getFlights } from '../../services/flights'
 import FooterFlight from './FooterFlight'
 
 const Flight = () => {
+  const [type, setType] = useState('')
   const [details, setDetails] = useState([])
-  const [dataFilter, setDataFilter] = useState([])
   const data = JSON.parse(localStorage.getItem('datos')) || []
+
+  const [maletin, setMaletin] = useState('')
+  const [maletin2, setMaletin2] = useState('')
+  const [maletin3, setMaletin3] = useState('')
+  const [select, setSelect] = useState('')
+
+
+
 
 
   const getData = async () => {
@@ -16,8 +24,21 @@ const Flight = () => {
   useEffect(() => {
 
     getData()
+    const data = JSON.parse(localStorage.getItem('type')) || []
+    setType(data)
 
   }, [])
+
+  const selectMaletin = (e, maletin) => {
+    console.log(e.target.id);
+    if (maletin === Number( e.target.id)) {
+      setSelect('select')
+      setMaletin2('')
+      setMaletin3('')
+      
+    }
+    
+  }
 
  
 
@@ -47,11 +68,11 @@ const Flight = () => {
               <small>{element.scale ? element.scale : 'Sin escalas'}</small>
             </div>
             <p>{element.hourEnd}</p>
-            <div className='flight__left__details__price'>
+            <div className={`flight__left__details__price ${select}`} onClick={(e) => selectMaletin(e, element.id)}>
               <span className="material-symbols-outlined">
                 business_center
               </span>
-              <small>1 objeto personal</small>
+              <small id = {element.id}>1 objeto personal</small>
               <small>$15000</small>
             </div>
             <div className='flight__left__details__price'>
@@ -73,7 +94,7 @@ const Flight = () => {
         ))
 
       }
-      <section className='backFlight'>
+      {type === 'Redondo' ?   <section className='backFlight'>
         <FooterFlight />
         <h3>Selección de horario y equipajes</h3>
 
@@ -117,7 +138,8 @@ const Flight = () => {
 
 
 
-      </section>
+      </section> : '' }
+    
 
     </>
   )

@@ -12,22 +12,24 @@ const Origin = ({ countries }) => {
 
     const [searchInput, setSearchInput] = useState([])
 
+    const [input, setInput] = useState('')
+
 
     const handleClick = ({ target }) => {
         setOption(target.value)
 
     }
     const confirm = () => {
-        changeFormData({name:'origin', value : option})
+        changeFormData({ name: 'origin', value: option })
 
         show()
 
     }
-    const filter = ({target}) => {
-        
+    const filter = ({ target }) => {
+        setInput(target.value)
         const filter = countries.filter(countrie => countrie.place.toLowerCase().includes(target.value.toLowerCase()))
         setSearchInput(filter)
-      
+
     }
 
 
@@ -43,14 +45,21 @@ const Origin = ({ countries }) => {
                 </section>
                 <article className='modal__container__search'>
                     <img src={search} alt="buscar" />
-                    <input type="text" placeholder='Ingrese el país de origen' onChange={(e) => {filter(e)}} />
+                    <input type="text" placeholder='Ingrese el país de origen' onChange={(e) => { filter(e) }} />
                 </article>
                 <select onClick={(e) => { handleClick(e) }}>
-                    {searchInput.map((countrie, index) => (
-                        <option value={countrie.name} key={index}>{`${countrie.place}`} </option>
+                    {input ? <>
+                        {searchInput.map((countrie, index) => (
+                            <option value={countrie.name} key={index}>{`${countrie.place}`} </option>
 
 
-                    ))}
+                        ))}</> : <>
+                        { countries.map((countrie,index) => (
+                            <option value={countrie.name} key={index}>{`${countrie.place}`} </option>
+
+                        )) }
+                        </>}
+
                 </select>
                 <button onClick={confirm}>Confirmar</button>
 

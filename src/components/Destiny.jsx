@@ -10,21 +10,24 @@ const Destiny = ({ countries }) => {
 
     const [searchInput, setSearchInput] = useState([])
 
+    const [input, setInput] = useState('')
+
+
     const handleClick = ({ target }) => {
         setOption(target.value)
 
     }
     const confirm = () => {
-        changeFormData({name:'destiny', value : option})
+        changeFormData({ name: 'destiny', value: option })
 
         showDestiny()
 
     }
-    const filter = ({target}) => {
-        
+    const filter = ({ target }) => {
+        setInput(target.value)
         const filter = countries.filter(countrie => countrie.place.toLowerCase().includes(target.value.toLowerCase()))
         setSearchInput(filter)
-      
+
     }
 
 
@@ -34,18 +37,24 @@ const Destiny = ({ countries }) => {
             <div className='modal__destiny'>
                 <section className='modal__destiny__title'>
                     <strong>¿Cuando regresas?</strong>
-                    <img src={close} alt="cerrar" onClick={showDestiny}/>
+                    <img src={close} alt="cerrar" onClick={showDestiny} />
                 </section>
                 <article className='modal__destiny__search'>
                     <img src={search} alt="buscar" />
-                    <input type="text" placeholder='Ingrese el país de origen' onChange={(e) => {filter(e)}} />
+                    <input type="text" placeholder='Ingrese el país de origen' onChange={(e) => { filter(e) }} />
                 </article>
                 <select onClick={(e) => { handleClick(e) }}>
-                    {searchInput.map((countrie, index) => (
-                        <option value={countrie.place} key={index}>{`${countrie.place}`} </option>
+                    {input ? <>
+                        {searchInput.map((countrie, index) => (
+                            <option value={countrie.name} key={index}>{`${countrie.place}`} </option>
 
 
-                    ))}
+                        ))}</> : <>
+                        {countries.map((countrie, index) => (
+                            <option value={countrie.name} key={index}>{`${countrie.place}`} </option>
+
+                        ))}
+                    </>}
                 </select>
                 <button onClick={confirm}>Confirmar</button>
 
